@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz App</title>
+  
+  <style>
+    div {
+      display: none;
+    }
+    .activeQuestion {
+      display: block;
+    }
+    button {
+      color: white;
+      background-color: #4CAF50;
+    }
+    label {
+      background-color: #F1F1F1;
+    }
+    .test {
+      display: block;
+    }
+  </style>
+  
+</head>
+<body>
+ 
+  <h1>eCommerce Quiz</h1>
+  <div class="question question1">
+    <p>Question 1: Which of the following is not a real eCommerce platform?</p>
+    <div class="test">
+      <label>
+        <input type="radio" name="q1" value="a"> Shopify
+      </label>
+    </div>
+    <br>
+    <label>
+      <input type="radio" name="q1" value="b"> WooCommerce
+    </label>
+    <br>
+    <label>
+      <input type="radio" name="q1" value="c"> ShopCommerce 
+    </label>
+    <br>
+    <label>
+      <input type="radio" name="q1" value="d"> BigCommerce
+    </label>
+    <br>
+    <button class="b1 btn">Next ></button>
+  </div>
+
+  <div class="question question2">
+    <p>Question 2: If Shopify is so good, why are Shopify developers necessary?</p>
+    <label>
+      <input type="radio" name="q2" value="a"> To save time on things like store setups and migrations
+    </label>
+    <br>
+    <label>
+      <input type="radio" name="q2" value="b"> To extend the limited design options and functionalities of themes with custom code
+    </label>
+    <br>
+    <label>
+      <input type="radio" name="q2" value="c"> To provide support with a deep understanding of how the platform works and what its limitations are 
+    </label>
+    <br>
+    <label>
+      <input type="radio" name="q2" value="d"> All the above
+    </label>
+    <br>
+    <button class="b2 btn">Next ></button>
+  </div>
+
+  <div class="question question3">
+    <p>Question 3: Which of the following is true about Shopify developers?</p>
+    <label>
+      <input type="radio" name="q3" value="a"> They are paid extremely well
+    </label>
+    <br>
+    <label>
+      <input type="radio" name="q3" value="b"> There is a high demand for them
+    </label>
+    <br>
+    <label>
+      <input type="radio" name="q3" value="c"> They need to know web development, the platform itself, and the liquid template language
+    </label>
+    <br>
+    <label>
+      <input type="radio" name="q3" value="d"> All the above
+    </label>
+    <br>
+    <button class="b3 btn">Next ></button>
+  </div>
+  <script>
+
+const questions = document.querySelectorAll('.question');
+const nextBtns = document.querySelectorAll('.btn');
+let currentQuestion = 0;
+
+questions[currentQuestion].classList.add('activeQuestion');
+
+nextBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (currentQuestion < questions.length - 1) {
+      questions[currentQuestion].classList.remove('activeQuestion');
+      currentQuestion++;
+      questions[currentQuestion].classList.add('activeQuestion');
+    } else {
+      alert('You have completed the quiz!');
+    }
+  });
+});
+
+  </script>
+</body>
+</html>
