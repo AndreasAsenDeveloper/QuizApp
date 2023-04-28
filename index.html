@@ -16,10 +16,10 @@
       background-color: #4CAF50;
     }
     label {
-      background-color: #F1F1F1;
-    }
-    .test {
-      display: block;
+    background-color: #F1F1F1;
+    width: 95%;
+    height: 20px;
+    margin: 10px 0;
     }
   </style>
   
@@ -29,11 +29,9 @@
   <h1>eCommerce Quiz</h1>
   <div class="question question1">
     <p>Question 1: Which of the following is not a real eCommerce platform?</p>
-    <div class="test">
       <label>
         <input type="radio" name="q1" value="a"> Shopify
       </label>
-    </div>
     <br>
     <label>
       <input type="radio" name="q1" value="b"> WooCommerce
@@ -98,12 +96,20 @@ const nextBtns = document.querySelectorAll('.btn');
 let currentQuestion = 0;
 
 questions[currentQuestion].classList.add('activeQuestion');
+var questionNumber = document.createElement('h2');
+currentQuestionNumber = currentQuestion + 1;
+questionNumber.textContent = "Question " + currentQuestionNumber + " of 3:";
+questions[currentQuestion].insertBefore(questionNumber, questions[currentQuestion].firstChild);
 
 nextBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     if (currentQuestion < questions.length - 1) {
       questions[currentQuestion].classList.remove('activeQuestion');
       currentQuestion++;
+      var questionNumber = document.createElement('h2');
+      currentQuestionNumber = currentQuestion + 1;
+      questionNumber.textContent = "Question " + currentQuestionNumber + " of 3:";
+      questions[currentQuestion].insertBefore(questionNumber, questions[currentQuestion].firstChild); 
       questions[currentQuestion].classList.add('activeQuestion');
     } else {
       alert('You have completed the quiz!');
