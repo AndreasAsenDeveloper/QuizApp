@@ -132,11 +132,28 @@ nextBtns.forEach(btn => {
       currentQuestion++;
       var questionNumber = document.createElement('h2');
       currentQuestionNumber = currentQuestion + 1;
-      questionNumber.textContent = "Question " + currentQuestionNumber + " of 3:";
-      questions[currentQuestion].insertBefore(questionNumber, questions[currentQuestion].firstChild); 
+      questionNumber.textContent = "Question " + currentQuestionNumber + " of " + questions.length;
+      if (!questions[currentQuestion].querySelector('h2')) {
+        questions[currentQuestion].insertBefore(questionNumber, questions[currentQuestion].firstChild);
+      }
       questions[currentQuestion].classList.add('activeQuestion');
     } else {
       alert(`You have completed the quiz! Your score is ${score}/${correctAnswers.length}`);
+    }
+  });
+});
+
+backBtns.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    if (currentQuestion > 0) {
+      questions[currentQuestion].classList.remove('activeQuestion');
+      currentQuestion--;
+      var questionNumber = document.createElement('h2');
+      currentQuestionNumber = currentQuestion + 1;
+      questionNumber.textContent = "Question " + currentQuestionNumber + " of " + questions.length;
+      //questions[currentQuestion].insertBefore(questionNumber, questions[currentQuestion].firstChild); 
+      questions[currentQuestion].classList.add('activeQuestion');
+      score--;
     }
   });
 });
