@@ -33,9 +33,9 @@
   <h1>eCommerce Quiz</h1>
   <div class="question question1">
     <p>Which of the following is not a real eCommerce platform?</p>
-      <label>
-        <input type="radio" name="q1" value="a"> Shopify
-      </label>
+    <label>
+      <input type="radio" name="q1" value="a"> Shopify
+    </label>
     <br>
     <label>
       <input type="radio" name="q1" value="b"> WooCommerce
@@ -99,6 +99,8 @@ const questions = document.querySelectorAll('.question');
 const nextBtns = document.querySelectorAll('.btn');
 let currentQuestion = 0;
 let score = 0;
+
+// Set correct answers for each question
 const correctAnswers = ['c', 'd', 'd'];
 
 questions[currentQuestion].classList.add('activeQuestion');
@@ -109,6 +111,19 @@ questions[currentQuestion].insertBefore(questionNumber, questions[currentQuestio
 
 nextBtns.forEach(btn => {
   btn.addEventListener('click', () => {
+    // Get user's answer for the current question
+    const selectedAnswer = document.querySelector(`input[name="q${currentQuestion+1}"]:checked`);
+    if (!selectedAnswer) {
+      alert('Please select an answer');
+      return;
+    }
+    const userAnswer = selectedAnswer.value;
+
+    // Check if user's answer is correct and update score
+    if (userAnswer === correctAnswers[currentQuestion]) {
+      score++;
+    }
+
     if (currentQuestion < questions.length - 1) {
       questions[currentQuestion].classList.remove('activeQuestion');
       currentQuestion++;
@@ -118,7 +133,7 @@ nextBtns.forEach(btn => {
       questions[currentQuestion].insertBefore(questionNumber, questions[currentQuestion].firstChild); 
       questions[currentQuestion].classList.add('activeQuestion');
     } else {
-      alert('You have completed the quiz!');
+      alert(`You have completed the quiz! Your score is ${score}/${correctAnswers.length}`);
     }
   });
 });
